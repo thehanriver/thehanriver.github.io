@@ -1,0 +1,9 @@
+[package]
+name = "my_portfolio"
+authors = ["Mario Han"]
+version = "0.1.0"
+edition = "2024"
+description = "Just my portfolio website"
+
+[dependencies]
+yew = { version = "0.21", features = ["csr"] }

@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/* ================================================= */
+/* ============== NEW DESIGN SYSTEM ================ */
+/* ================================================= */
+
+:root {
+  /* Copy the color hex codes from her variables.js */
+  --color-dark-navy: #020c1b;
+  --color-navy: #0a192f;
+  --color-light-navy: #112240;
+  --color-slate: #8892b0;
+  --color-light-slate: #a8b2d1;
+  --color-lightest-slate: #ccd6f6;
+  --color-white: #e6f1ff;
+  --color-green: #64ffda;
+
+  /* Choose a good font from Google Fonts that's close to hers */
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "Fira Code", monospace; /* For code-like elements */
+}
+
+/* Now, take the rules from her GlobalStyle.js and apply them */
+body {
+  background-color: var(--color-navy);
+  color: var(--color-slate);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-lightest-slate);
+}
+
+a {
+  color: var(--color-green);
+}
+
+/* Add more base styles from her GlobalStyle here */

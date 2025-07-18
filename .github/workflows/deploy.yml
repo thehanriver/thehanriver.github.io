@@ -1,0 +1,57 @@
+# This is the name of your workflow, which will show up in the "Actions" tab on GitHub.
+name: Deploy Portfolio to GitHub Pages
+
+# This is the "trigger." It tells the workflow WHEN to run.
+on:
+  # Run this workflow on every push...
+  push:
+    # ...but ONLY for the 'v2' branch.
+    branches:
+      - v2
+
+# This defines the "job" or the series of tasks the robot will perform.
+jobs:
+  build_and_deploy:
+    # The robot will run on a fresh, clean Ubuntu virtual machine.
+    runs-on: ubuntu-latest
+
+    # These are the individual steps the robot will take, in order.
+    steps:
+      # Step 1: Download your source code from the 'v2' branch.
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      # Step 2: Install the Rust toolchain.
+      - name: Install Rustup
+        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+      # Step 3: Add the WebAssembly compilation target for Rust.
+      - name: Add wasm target
+        run: rustup target add wasm32-unknown-unknown
+
+      # Step 4: Install the Trunk build tool.
+      - name: Install Trunk
+        run: cargo install trunk --locked
+
+      # Step 5: Build the application for production.
+      # This is the equivalent of 'trunk build' but optimized.
+      # It will create the 'dist' folder.
+      - name: Build with Trunk
+        run: trunk build --release
+
+      # Step 6: Deploy the contents of the 'dist' folder.
+      # This is the magic step. It uses a community-made Action to handle the deployment.
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # This token gives the robot permission to push to your repository.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+          # This is the folder it will deploy.
+          publish_dir: ./dist
+
+          # This is the destination branch.
+          publish_branch: master
+
+          # This ensures a clean deployment branch, which is best practice.
+          force_orphan: true

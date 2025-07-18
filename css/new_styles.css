@@ -1,42 +1,624 @@
-@charset "UTF-8";
-/* ================================================= */
-/* ============== NEW DESIGN SYSTEM ================ */
-/* ================================================= */
-
 :root {
-  /* Copy the color hex codes from her variables.js */
-  --color-dark-navy: #020c1b;
-  --color-navy: #0a192f;
-  --color-light-navy: #112240;
-  --color-slate: #8892b0;
-  --color-light-slate: #a8b2d1;
-  --color-lightest-slate: #ccd6f6;
-  --color-white: #e6f1ff;
-  --color-green: #64ffda;
+  /* Primary Palette */
+  --color-background: #264653;
+  --color-accent: #e76f51;
 
-  /* Choose a good font from Google Fonts that's close to hers */
-  --font-sans: "Inter", sans-serif;
-  --font-mono: "Fira Code", monospace; /* For code-like elements */
+  /* Text */
+  --color-text-primary: #f0f8ff;
+  --color-text-secondary: #e9c46a;
+
+  /* Surfaces & Layers */
+  --color-surface: #2a9d8f;
+  --color-accent-2: #f4a261;
+
+  /* Fonts */
+  --font-sans: "Inter", -apple-system, system-ui, sans-serif;
+  --font-mono: "Fira Code", "SF Mono", monospace;
 }
 
-/* Now, take the rules from her GlobalStyle.js and apply them */
 body {
-  background-color: var(--color-navy);
-  color: var(--color-slate);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
   font-family: var(--font-sans);
+  font-size: 18px;
 }
 
+/* Base styles for headings */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  color: var(--color-lightest-slate);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 20px;
 }
 
 a {
-  color: var(--color-green);
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-/* Add more base styles from her GlobalStyle here */
+a:hover {
+  color: var(--color-accent);
+  /* Add a subtle underline on hover for clarity */
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+/* This is a great trick: a general class for section layout */
+.section {
+  padding: 80px 0;
+}
+
+.bg-primary {
+  background-color: var(--color-background) !important;
+}
+
+.text-primary {
+  color: var(--color-accent) !important;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. Apply it to the main content block */
+.main-content {
+  margin-left: 17rem; /* Make space for the left sidebar */
+  margin-right: 16rem;
+  padding: 3rem;
+
+  /* --- Your excellent animation rule --- */
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/*
+  We still need to space out the sections themselves,
+  so we'll keep a simple rule for that.
+*/
+.content-section {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+/* --- 2. MAIN NAVIGATION SIDEBAR (LEFT) --- */
+
+.left-sidebar {
+  /* Positioning & Size */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 100vh;
+  width: 17rem;
+
+  /* Look & Feel */
+  background-color: var(--color-background);
+  text-align: center;
+
+  /* Internal Layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-sidebar .profile-img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 0.5rem solid var(--color-surface); /* e.g., Bright Teal */
+  object-fit: cover;
+}
+
+.left-sidebar .main-heading {
+  margin-top: 1rem;
+  color: var(--color-text-primary);
+}
+
+.left-sidebar .sub-heading {
+  margin-bottom: 3rem; /* Space between subheading and main links */
+  color: var(--color-text-secondary);
+}
+
+.left-sidebar .main-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.left-sidebar .main-nav-list li {
+  margin: 1rem 0;
+}
+
+.left-sidebar .main-nav-list a {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+.left-sidebar .main-nav-list a:hover {
+  color: var(--color-accent);
+}
+
+.left-sidebar .social-links-footer {
+  list-style: none;
+  padding: 0;
+  margin-top: auto; /* Pushes the social links to the bottom */
+  padding-bottom: 2rem;
+  display: flex;
+  gap: 1.5rem;
+}
+.left-sidebar .social-links-footer a {
+  color: var(--color-text-secondary);
+  font-size: 1.5rem;
+}
+
+/* --- 3. UTILITY SIDEBAR (RIGHT) --- */
+
+.right-sidebar {
+  width: 40px;
+  position: fixed;
+  bottom: 0;
+  right: 40px;
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Space between email and line */
+}
+
+.right-sidebar .email-wrapper {
+  writing-mode: vertical-rl;
+}
+
+.right-sidebar .email-wrapper a {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 1.5px;
+}
+
+.right-sidebar::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 90px;
+  background-color: var(--color-text-secondary);
+}
+
+/* ==========================================================
+   MOBILE RESPONSIVENESS
+   ========================================================== */
+
+@media (max-width: 992px) {
+  /* Make the sidebar a header at the top */
+  .left-sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+  }
+  .left-sidebar .social-links-footer {
+    padding-top: 2rem;
+    margin-top: 0; /* Reset the margin */
+    order: 3; /* You can change order with flexbox */
+  }
+
+  /* Let the main content take up full width */
+  .main-content {
+    margin-left: 0;
+    margin-right: 16rem;
+    padding: 2rem;
+  }
+
+  /* Hide the right utility sidebar */
+  .right-sidebar {
+    display: none;
+  }
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin: 10px 0 40px; /* Top, Right, Bottom, Left */
+  font-family: var(--font-mono);
+  font-size: 28px;
+  white-space: nowrap;
+}
+
+/* Style for the heading text itself */
+.heading-title {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* This creates the decorative line after the heading */
+.section-heading::after {
+  content: "";
+  display: block;
+  position: relative;
+  top: 12px; /* Align vertically with the text */
+  width: 800px;
+  height: 1px;
+  margin-left: 20px;
+  background-color: var(
+    --color-surface
+  ); /* Use the bright teal surface color */
+}
+
+/* On smaller screens, make the line take up the rest of the available space */
+@media (max-width: 1000px) {
+  .section-heading::after {
+    flex-grow: 1; /* Allows the line to grow and shrink */
+  }
+}
+
+/* On very small screens, you might want to make the line shorter or hide it */
+@media (max-width: 768px) {
+  .section-heading::after {
+    width: 100%; /* Or set a smaller fixed width */
+  }
+}
+
+#intro {
+  /* Let's make it fill more of the screen vertically for a strong first impression */
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the content */
+}
+
+.intro-name {
+  font-size: 64px; /* Big, bold name */
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+
+/* Style the accent color on your last name */
+.intro-name-accent {
+  color: var(--color-accent);
+}
+
+.intro-subheading {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  margin-bottom: 40px;
+  color: var(--color-text-secondary);
+}
+
+.intro-paragraph {
+  /* Use a slightly larger font size for the intro text to make it more readable */
+  font-size: 1.1rem;
+  color: var(
+    --color-text-secondary
+  ); /* Use the secondary color for body text */
+  margin-bottom: 20px; /* Space between paragraphs */
+}
+
+/* The container for a single job */
+.job-entry {
+  /* Add space between each job entry */
+  margin-bottom: 40px;
+}
+.job-entry:last-child {
+  margin-bottom: 0; /* No margin on the last one */
+}
+
+/* Use Flexbox for the header to put Title/Company on the left and Date/Location on the right */
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.job-title {
+  font-size: 20px;
+  color: var(--color-text-primary);
+  margin-bottom: 5px; /* A little space between title and company */
+}
+
+.job-company {
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+}
+
+.job-date-location {
+  text-align: right; /* Align text to the right for this block */
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+}
+.job-date {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-accent); /* Make the date pop */
+}
+.job-location {
+  font-size: 13px;
+}
+
+/* Styling for the bullet points */
+.job-description {
+  list-style-type: disc; /* Use a standard disc for bullets */
+  padding-left: 20px; /* Indent the bullet points */
+  color: var(--color-text-secondary);
+}
+
+.job-description li {
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.education-entry {
+  margin-bottom: 40px;
+}
+.education-entry:last-child {
+  margin-bottom: 0;
+}
+
+/* Use Flexbox for the header row */
+.education-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.institution-name {
+  font-size: 20px;
+  color: var(--color-text-primary);
+  margin-bottom: 5px;
+}
+.degree-title {
+  color: var(--color-text-secondary);
+}
+
+.education-date {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.education-body {
+  padding-left: 10px; /* Indent the body content slightly */
+}
+
+.course-work-heading {
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--color-text-primary);
+}
+
+.course-lists {
+  display: grid;
+  /* Create a responsive grid for the course categories */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.course-category h4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-text-secondary);
+  margin-bottom: 10px;
+}
+.course-category ul {
+  list-style: none;
+  padding: 0;
+}
+.course-category ul li {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 20px;
+}
+/* This is a neat trick to create a custom bullet point */
+.course-category ul li::before {
+  content: "▹"; /* Use a cool arrow character */
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+.skills-grid {
+  display: grid;
+  /* This creates a responsive grid. It will have as many 200px-wide columns
+       as can fit, and they will grow to fill the space. On small screens, it
+       will automatically become a single column. */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem; /* The space between the skill categories */
+}
+
+.skill-category h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-surface); /* A subtle line under the category title */
+  padding-bottom: 10px;
+}
+
+.skill-category ul {
+  list-style: none; /* Remove default bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+.skill-category li {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  position: relative;
+  padding-left: 20px; /* Make space for our custom bullet */
+  margin-bottom: 10px;
+}
+
+/* Create the custom themed bullet point */
+.skill-category li::before {
+  content: "▹"; /* The arrow character */
+  position: absolute;
+  left: 0;
+  color: var(--color-accent); /* Use our main accent color */
+  font-size: 14px;
+  line-height: 18px; /* Align it with the text */
+}
+
+/* This will style the paragraphs in both the About and Interests sections */
+.section-content p {
+  color: var(--color-text-secondary);
+  font-size: 18px; /* Or your preferred body text size */
+  line-height: 1.6; /* Improves readability */
+  margin-bottom: 1rem; /* Space between paragraphs */
+}
+
+.section-content p:last-of-type {
+  margin-bottom: 0; /* No margin on the very last paragraph in a section */
+}
+
+/* ==========================================================
+   PROJECT SHOWCASE & ACHIEVEMENTS STYLING
+   ========================================================== */
+
+.projects-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.project-card {
+  background-color: var(--color-surface);
+  border-radius: 4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* Important for grid items to be same height */
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px -10px var(--color-background);
+}
+
+.project-card .card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This is key for layout */
+  padding: 2rem 1.75rem;
+  height: 100%;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.project-icon .fa-folder-open {
+  color: var(--color-accent);
+  font-size: 40px;
+}
+.project-links a {
+  color: var(--color-text-primary);
+  font-size: 22px;
+}
+.project-links a:hover {
+  color: var(--color-accent);
+}
+
+.project-title {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.project-title a {
+  color: var(--color-text-primary);
+}
+
+.project-description {
+  color: var(--color-text-secondary);
+  font-size: 17px;
+  flex-grow: 1; /* Allows description to take up space */
+}
+
+.project-tags ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 15px; /* Space above tags */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.project-tags li {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-accent);
+}
+
+/* Styling for the achievements part */
+.achievements-section {
+  margin-top: 80px; /* Add significant space after the project grid */
+}
+.achievements-title {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--color-text-secondary);
+}
+/* ==========================================================
+   ACHIEVEMENTS LIST STYLING (The Missing Piece)
+   ========================================================== */
+
+.achievement-list {
+  list-style: none; /* Removes the default browser bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+/* This targets each individual line item (e.g., the "Eagle Scout" line) */
+.achievement-list li {
+  display: flex; /* Use Flexbox for easy alignment */
+  align-items: flex-start; /* Aligns the icon with the top of the text */
+  margin-bottom: 20px; /* Adds space between each achievement */
+}
+.achievement-list li:last-child {
+  margin-bottom: 0; /* No space needed after the final item */
+}
+
+/* Style the Font Awesome trophy icon */
+.achievement-list .fa-trophy {
+  color: var(--color-text-secondary); /* Use the muted yellow for the icon */
+  font-size: 16px;
+  margin-right: 15px; /* Creates space between the icon and the text */
+  margin-top: 5px; /* A small nudge to vertically align the icon perfectly */
+}
+
+/* Style the div that contains the text content */
+.achievement-list .achievement-text {
+  flex: 1; /* Allows the text to take up the remaining space */
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* Style the <strong> tag inside the text for emphasis */
+.achievement-list .achievement-text strong {
+  color: var(--color-text-primary); /* Make the title part stand out */
+  font-weight: 600;
+}

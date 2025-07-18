@@ -660,3 +660,37 @@ a:hover {
   color: var(--color-text-primary);
   font-weight: 600;
 }
+
+@media (max-width: 992px) {
+  .left-sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+  }
+
+  .left-sidebar .profile-img {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .left-sidebar .main-nav-list {
+    flex-direction: column;
+    margin: 2rem 0;
+  }
+
+  .left-sidebar .social-links-footer {
+    padding-top: 1rem;
+    margin-top: 0;
+  }
+
+  .main-content {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 2rem;
+  }
+
+  .right-sidebar {
+    display: none;
+  }
+}

@@ -12,6 +12,8 @@ on:
 # This defines the "job" or the series of tasks the robot will perform.
 jobs:
   build_and_deploy:
+    permissions:
+      contents: write
     # The robot will run on a fresh, clean Ubuntu virtual machine.
     runs-on: ubuntu-latest
 

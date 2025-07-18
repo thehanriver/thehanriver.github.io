@@ -5,7 +5,7 @@ pub fn right_sidebar() -> Html {
     html! {
         <aside class="right-sidebar">
             <div class="email-wrapper">
-                <a href="mailto:mariohan1234@gmail.com">{"mariohan1234@gmail.com"}</a>
+                <a rel="noopener noreferrer" href="mailto:mariohan1234@gmail.com">{"mariohan1234@gmail.com"}</a>
             </div>
         </aside>
     }

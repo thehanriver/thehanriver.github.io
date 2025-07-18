@@ -8,19 +8,21 @@ pub fn left_sidebar() -> Html {
             <div class="sidebar-header">
                 <img class="profile-img" src="assets/img/profile.jpg" alt="A picture of Mario Han" />
                 <h1 class="main-heading">{"Mario Han"}</h1>
-                <p class="sub-heading">{"Your Subheading / Title Here"}</p>
+                <p class="sub-heading">{"Software Engineer whose brother isn't Luigi"}</p>
             </div>
 
             <ul class="main-nav-list">
                 <li><a class="nav-link" href="#about">{"About"}</a></li>
                 <li><a class="nav-link" href="#experience">{"Experience"}</a></li>
+                <li><a class="nav-link" href="#experience">{"Education"}</a></li>
                 <li><a class="nav-link" href="#skills">{"Skills"}</a></li>
-                <li><a class="nav-link" href="#projects">{"Projects"}</a></li>
+                <li><a class="nav-link" href="#experience">{"Interests"}</a></li>
+                <li><a class="nav-link" href="#projects">{"Things I Did"}</a></li>
             </ul>
 
             <ul class="social-links-footer">
-                <li><a href="your_github_url" target="_blank"><i class="fab fa-github"></i></a></li>
-                <li><a href="your_linkedin_url" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="https://github.com/thehanriver" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/mario-h-642057122/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a></li>
             </ul>
         </nav>
     }

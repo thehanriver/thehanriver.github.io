@@ -8,6 +8,8 @@ pub struct JobProps {
     pub location: String,
     #[prop_or_default]
     pub description_points: Vec<String>, // A list of bullet points
+    #[prop_or_default]
+    pub tags: Vec<String>,
 }
 
 #[function_component(Job)]
@@ -28,6 +30,15 @@ pub fn job(props: &JobProps) -> Html {
             <ul class="job-description">
                 { for props.description_points.iter().map(|point| html!{ <li>{point}</li> }) }
             </ul>
+            if !props.tags.is_empty() {
+                <ul class="job-tags">
+                    {
+                        for props.tags.iter().map(|tag| {
+                            html!{<li>{tag}</li>}
+                        })
+                    }
+                </ul>
+            }
         </div>
     }
 }

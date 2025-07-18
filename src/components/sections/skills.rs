@@ -5,11 +5,7 @@ use yew::prelude::*; // Import our Section wrapper
 pub fn Skills() -> Html {
     html! {
         <Section id="skills" title="Skills">
-
-            // This grid will contain all of our skill categories
             <div class="skills-grid">
-
-                // --- Category 1: Programming Languages ---
                 <div class="skill-category">
                     <h3>{"Programming Languages"}</h3>
                     <ul>
@@ -25,7 +21,6 @@ pub fn Skills() -> Html {
                     </ul>
                 </div>
 
-                // --- Category 2: Developer Tools ---
                 <div class="skill-category">
                     <h3>{"Developer Tools"}</h3>
                     <ul>
@@ -39,7 +34,6 @@ pub fn Skills() -> Html {
                     </ul>
                 </div>
 
-                // --- Category 3: Frameworks & Libraries ---
                 <div class="skill-category">
                     <h3>{"Frameworks"}</h3>
                     <ul>
@@ -49,7 +43,6 @@ pub fn Skills() -> Html {
                     </ul>
                 </div>
 
-                // --- Category 4: Spoken Languages ---
                  <div class="skill-category">
                     <h3>{"Languages"}</h3>
                     <ul>
@@ -57,8 +50,7 @@ pub fn Skills() -> Html {
                         <li>{"Korean (Conversational)"}</li>
                     </ul>
                 </div>
-
-            </div> // End of skills-grid
+            </div>
         </Section>
     }
 }

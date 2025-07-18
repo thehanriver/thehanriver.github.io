@@ -44,7 +44,6 @@ a {
 
 a:hover {
   color: var(--color-accent);
-  /* Add a subtle underline on hover for clarity */
   text-decoration: underline;
   text-decoration-thickness: 2px;
 }
@@ -131,7 +130,8 @@ a:hover {
 }
 
 .left-sidebar .sub-heading {
-  margin-bottom: 3rem; /* Space between subheading and main links */
+  align-self: center;
+  margin: 1rem 1rem 1rem 1rem;
   color: var(--color-text-secondary);
 }
 
@@ -365,6 +365,25 @@ a:hover {
   line-height: 1.4;
 }
 
+.job-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* Add some space between the bullet points and the tags */
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* The space between each tag */
+}
+
+.job-tags li {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #f0f8ff; /* Your primary text color */
+  background-color: rgba(240, 248, 255, 0.1);
+}
 .education-entry {
   margin-bottom: 40px;
 }
@@ -497,47 +516,65 @@ a:hover {
    PROJECT SHOWCASE & ACHIEVEMENTS STYLING
    ========================================================== */
 
+/* ==========================================================
+   PROJECT SHOWCASE & ACHIEVEMENTS (Refactored)
+   ========================================================== */
+
+/* --- 1. The Project Grid Container --- */
 .projects-grid {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
+  /* Creates a responsive grid of cards */
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 15px;
+  gap: 20px; /* Space between cards */
 }
 
+/* --- 2. The Project Card --- */
 .project-card {
+  /* Look & Feel */
   background-color: var(--color-surface);
   border-radius: 4px;
+  height: 100%;
+  display: flex;
+  flex-direction: column; /* To stack its children vertically */
+  /* Transitions for hover effects */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%; /* Important for grid items to be same height */
-}
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px -10px var(--color-background);
 }
 
+.project-card:hover {
+  transform: translateY(-7px); /* Lift the card up a bit more */
+  box-shadow: 0 10px 30px -15px var(--color-background);
+}
+
+/* --- 3. The Card's Internal Content --- */
 .project-card .card-content {
+  /* This Flexbox layout is the key to aligning content */
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* This is key for layout */
+  justify-content: space-between;
   padding: 2rem 1.75rem;
   height: 100%;
+  flex: 1;
 }
 
 .project-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
+  align-items: flex-start;
+  margin-bottom: 30px;
 }
+
 .project-icon .fa-folder-open {
   color: var(--color-accent);
   font-size: 40px;
 }
+
 .project-links a {
   color: var(--color-text-primary);
   font-size: 22px;
+  margin-left: 15px; /* Space between icons */
 }
 .project-links a:hover {
   color: var(--color-accent);
@@ -545,80 +582,81 @@ a:hover {
 
 .project-title {
   font-size: 22px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .project-title a {
   color: var(--color-text-primary);
+  text-decoration: none;
 }
 
 .project-description {
   color: var(--color-text-secondary);
   font-size: 17px;
-  flex-grow: 1; /* Allows description to take up space */
+  line-height: 1.5;
+  flex-grow: 1; /* This pushes the tags to the very bottom */
 }
 
-.project-tags ul {
+/* --- 4. Project Tags (Footer of the card) --- */
+.project-tags {
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-top: 15px; /* Space above tags */
+  margin-top: 15px; /* Space between description and tags */
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px; /* Space between each tag */
 }
+
 .project-tags li {
   font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--color-accent);
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #f0f8ff; /* Your primary text color */
+  background-color: rgba(240, 248, 255, 0.1);
 }
 
-/* Styling for the achievements part */
+/* ==========================================================
+   ACHIEVEMENTS STYLING
+   ========================================================== */
+
 .achievements-section {
-  margin-top: 80px; /* Add significant space after the project grid */
+  margin-top: 100px; /* Add even more space after the project grid */
 }
+
 .achievements-title {
   font-family: var(--font-mono);
   font-size: 20px;
   margin-bottom: 20px;
   color: var(--color-text-secondary);
 }
-/* ==========================================================
-   ACHIEVEMENTS LIST STYLING (The Missing Piece)
-   ========================================================== */
 
 .achievement-list {
-  list-style: none; /* Removes the default browser bullet points */
+  list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* This targets each individual line item (e.g., the "Eagle Scout" line) */
 .achievement-list li {
-  display: flex; /* Use Flexbox for easy alignment */
-  align-items: flex-start; /* Aligns the icon with the top of the text */
-  margin-bottom: 20px; /* Adds space between each achievement */
-}
-.achievement-list li:last-child {
-  margin-bottom: 0; /* No space needed after the final item */
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
 }
 
-/* Style the Font Awesome trophy icon */
 .achievement-list .fa-trophy {
-  color: var(--color-text-secondary); /* Use the muted yellow for the icon */
+  color: var(--color-text-secondary);
   font-size: 16px;
-  margin-right: 15px; /* Creates space between the icon and the text */
-  margin-top: 5px; /* A small nudge to vertically align the icon perfectly */
+  margin-right: 15px;
+  margin-top: 5px;
 }
 
-/* Style the div that contains the text content */
 .achievement-list .achievement-text {
-  flex: 1; /* Allows the text to take up the remaining space */
+  flex: 1;
   color: var(--color-text-secondary);
   line-height: 1.5;
 }
 
-/* Style the <strong> tag inside the text for emphasis */
 .achievement-list .achievement-text strong {
-  color: var(--color-text-primary); /* Make the title part stand out */
+  color: var(--color-text-primary);
   font-weight: 600;
 }

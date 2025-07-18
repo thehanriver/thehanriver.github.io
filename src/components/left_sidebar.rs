@@ -14,9 +14,9 @@ pub fn left_sidebar() -> Html {
             <ul class="main-nav-list">
                 <li><a class="nav-link" href="#about">{"About"}</a></li>
                 <li><a class="nav-link" href="#experience">{"Experience"}</a></li>
-                <li><a class="nav-link" href="#experience">{"Education"}</a></li>
+                <li><a class="nav-link" href="#education">{"Education"}</a></li>
                 <li><a class="nav-link" href="#skills">{"Skills"}</a></li>
-                <li><a class="nav-link" href="#experience">{"Interests"}</a></li>
+                <li><a class="nav-link" href="#interests">{"Interests"}</a></li>
                 <li><a class="nav-link" href="#projects">{"Things I Did"}</a></li>
             </ul>
 

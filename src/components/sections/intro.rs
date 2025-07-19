@@ -1,18 +1,14 @@
 use yew::prelude::*;
-// We no longer need to import the Section component here
 
 #[function_component(Intro)]
 pub fn intro() -> Html {
     html! {
         <section class="content-section" id="intro">
-            // The title or main heading of the whole page
             <h1 class="intro-name">
                 {"Mario"}
-                // Use a <span> with a class so we can color it with our accent
                 <span class="intro-name-accent">{" Han"}</span>
             </h1>
 
-            // Paragraphs can now use a simpler class if needed, or none at all
             <p class="intro-paragraph">{"Hi, I'm Mario Han — a Computer Engineering graduate from Boston University (Class
                 of 2021) with a passion for building resilient systems and user-focused software."}</p>
             <p class="intro-paragraph">{"I specialize in full-stack development, software engineering, and embedded systems.

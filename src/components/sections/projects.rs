@@ -1,11 +1,10 @@
 use crate::components::project_card::ProjectCard;
-use crate::components::sections::section::Section; // Our main section wrapper
-use yew::prelude::*; // Our new reusable card
+use crate::components::sections::section::Section;
+use yew::prelude::*;
 #[function_component]
 pub fn Projects() -> Html {
     html! {
         <Section id="projects" title="Things I've Built">
-            // This grid will hold all the project cards
             <ul class="projects-grid">
                 <ProjectCard
                     title="COVID-NET on Hybrid Cloud"

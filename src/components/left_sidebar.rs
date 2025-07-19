@@ -3,7 +3,6 @@ use yew::prelude::*;
 #[function_component(LeftSidebar)]
 pub fn left_sidebar() -> Html {
     html! {
-        // We'll also rename the primary CSS class for clarity
         <nav class="left-sidebar" id="sideNav">
             <div class="sidebar-header">
                 <img class="profile-img" src="assets/img/profile.jpg" alt="A picture of Mario Han" />
